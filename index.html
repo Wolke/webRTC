@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進階 WebRTC 示例</title>
+    <style>
+        #chatBox {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>進階 WebRTC 示例</h1>
+    <div id="videoContainer">
+        <video id="localVideo" autoplay playsinline></video>
+        <video id="remoteVideo" autoplay playsinline></video>
+    </div>
+    <div id="controlsContainer">
+        <button id="startButton">開始</button>
+        <button id="callButton" disabled>呼叫</button>
+        <button id="hangupButton" disabled>掛斷</button>
+    </div>
+    <div id="chatContainer">
+        <div id="chatBox"></div>
+        <input type="text" id="chatInput" placeholder="輸入訊息...">
+        <button id="sendButton" disabled>發送</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <script>
+        const SOCKET_SERVER_URL = 'https://192.168.18.5:8080';
+        const socket = io(SOCKET_SERVER_URL, {
+            transports: ['websocket', 'polling'],
+            reconnectionAttempts: 5,
+            secure: true
+        });
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
